@@ -13,10 +13,4 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends mysql-client \
     && rm -rf /var/lib/apt/lists/
 
-
-# Create user and set ownership and permissions as required
-RUN adduser -D myuser && chown -R myuser /myapp-data
-
-USER myuser
-
 ENTRYPOINT ["mysql"]
