@@ -1,4 +1,4 @@
-name: "mysql CI workflow"
+name: "stress load docker ubuntu CI workflow"
 
 
 on:
@@ -10,14 +10,14 @@ on:
 
 jobs:
 
-  mysql-latest-job:
-    name: "mysql docker ubuntu latest"
+  ubuntu-latest-job:
+    name: "docker ubuntu latest"
     runs-on: ubuntu-latest
     env:
       version: "latest"
-      name: "ubuntu/mysql"
+      name: "ubuntu/base"
       dockerfiledir: "dockerfiles"
-      dockerfilename: "Dockerfile.ubuntu.2004.mysql"
+      dockerfilename: "Dockerfile.ubuntu"
     steps:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
