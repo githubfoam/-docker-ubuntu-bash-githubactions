@@ -55,8 +55,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #     stress -c 2 -i 1 -m 1 --vm-bytes 128M -t 10s && \
 #     uptime
 
-RUN stress -c 2 -i 1 -m 1 --vm-bytes 128M -t 10s &&
-CMD stress -c 2 -i 1 -m 1 --vm-bytes 128M -t 10s &&
+RUN stress -c 2 -i 1 -m 1 --vm-bytes 128M -t 10s
+CMD stress -c 2 -i 1 -m 1 --vm-bytes 128M -t 10s
 
 RUN mkdir /home/vagrant && \
     # create a user ‘builder‘ with home directory ‘/home/vagrant‘, 
