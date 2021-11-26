@@ -14,10 +14,10 @@ jobs:
     name: "docker ubuntu latest"
     runs-on: ubuntu-latest
     env:
-      version: "latest"
-      name: "ubuntu/base"
+      version: "load"
+      name: "ubuntu/2104"
       dockerfiledir: "dockerfiles"
-      dockerfilename: "Dockerfile.ubuntu"
+      dockerfilename: "Dockerfile.ubuntu.2104.load"
     steps:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
