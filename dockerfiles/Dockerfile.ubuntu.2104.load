@@ -3,7 +3,11 @@ LABEL org.opencontainers.image.authors="githubfoam"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
-    stress
+    # workload generator tool 
+    # measure of CPU, memory, I/O and disk stress
+    stress \
+    # an updated version of the stress workload generator tool 
+    stress-ng 
 
 RUN uptime && \
     #  spawn 6 workers spinning on sqrt() with a timeout of 20 seconds
