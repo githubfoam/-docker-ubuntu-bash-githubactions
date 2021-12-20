@@ -13,10 +13,12 @@ RUN apt-get update -qy && \
 # Nginx users should use ModSecurity 3
 # Apache users should use ModSecurity the 2.9 branch 
 # The ModSecurity module for Apache
-RUN apt-get install \ 
-        libapache2-mod-security2 -qy &&\
-        # enable this module
-        a2enmod security2
+
+RUN apt-get install libapache2-mod-security2 -qy
+# RUN apt-get install \ 
+#         libapache2-mod-security2 -qy &&\
+#         # enable this module
+#         a2enmod security2
 
 RUN mkdir /home/vagrant && \
     # create a user ‘builder‘ with home directory ‘/home/vagrant‘, 
