@@ -27,5 +27,3 @@ RUN mkdir /home/vagrant && \
     chown -R vagrant /home/vagrant
 
 USER vagrant
-
-USER myuser
