@@ -1,4 +1,4 @@
-name: "docker ubuntu CI workflow"
+name: "docker ubuntu latest CI workflow"
 
 
 on:
@@ -16,8 +16,8 @@ jobs:
     strategy:
       matrix:
         node:
-         - ubuntu
-        #  - python
+         - base
+         - modsecurity
         #  - clearlinux    
     env:
       distribution: "ubuntu"
@@ -48,7 +48,7 @@ jobs:
     - name: "run test"
       run: |
         dir=$(pwd)
-        cd $dir/dockerfiles
+        cd $dir/dockerfiles/ubuntu/latest
         cd ${{matrix.node}}
         echo "############################################"
         echo "############################################"
