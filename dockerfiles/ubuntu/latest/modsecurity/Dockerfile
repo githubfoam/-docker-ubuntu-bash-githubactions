@@ -14,7 +14,7 @@ RUN apt-get update -qy && \
 # Apache users should use ModSecurity the 2.9 branch 
 # The ModSecurity module for Apache
 
-RUN apt-get install libapache2-mod-security2 -qy
+# RUN apt-get install libapache2-mod-security2 -qy
 # RUN apt-get install \ 
 #         libapache2-mod-security2 -qy &&\
 #         # enable this module
@@ -26,4 +26,4 @@ RUN apt-get install libapache2-mod-security2 -qy
 #     useradd -m -d /home/vagrant -s /bin/bash -c "builder" -U vagrant  && \
 #     chown -R vagrant /home/vagrant
 
-USER vagrant
+# USER vagrant
