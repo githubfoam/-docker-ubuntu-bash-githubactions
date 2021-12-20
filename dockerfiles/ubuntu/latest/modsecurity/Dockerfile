@@ -20,10 +20,10 @@ RUN apt-get install libapache2-mod-security2 -qy
 #         # enable this module
 #         a2enmod security2
 
-RUN mkdir /home/vagrant && \
-    # create a user ‘builder‘ with home directory ‘/home/vagrant‘, 
-    # default shell /bin/bash and adds extra information about user
-    useradd -m -d /home/vagrant -s /bin/bash -c "builder" -U vagrant  && \
-    chown -R vagrant /home/vagrant
+# RUN mkdir /home/vagrant && \
+#     # create a user ‘builder‘ with home directory ‘/home/vagrant‘, 
+#     # default shell /bin/bash and adds extra information about user
+#     useradd -m -d /home/vagrant -s /bin/bash -c "builder" -U vagrant  && \
+#     chown -R vagrant /home/vagrant
 
 USER vagrant
