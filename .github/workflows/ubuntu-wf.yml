@@ -45,6 +45,10 @@ jobs:
         docker image history ${name}:${version}
         docker system df -v               
         docker image inspect ${name}:${version}     
+    - name: "docker run with apparmor "
+      run: |
+        # https://docs.docker.com/engine/security/apparmor/
+        docker run --rm -it --security-opt apparmor=docker-default hello-world        
     # - name: "run test"
     #   run: |
     #     dir=$(pwd)
