@@ -96,12 +96,17 @@ jobs:
         cat /etc/issue
         cat /etc/os-release
         sudo apt-get install -y neofetch && neofetch   
-    - name: "docker build ubuntu"
+    - name: "opencanary"
       run: |
-        # destroyed afterwards (use --rm )
-        # all subsequent Dockerfile commands generate new images and the cache is not used
-        sudo docker build --no-cache --rm  -t ${name}:${version} . --file ${dockerfiledir}/${dockerfilename} 
-        docker image ls
-        docker image history ${name}:${version}
-        docker system df -v               
-        docker image inspect ${name}:${version}      
+        apt-get update -y && apt-get install python3 -yq
+        python3 -V
+        pip3 --version
+        pip3 install --user virtualenv
+        virtualenv --version
+        virtualenv venv3 --python=`which python3`
+        source venv3/bin/activate
+        pip --version
+        pip install opencanary scapy pcapy
+        opencanaryd --help
+        opencanaryd --copyconfig #generate a conf
+        source venv3/bin/deactivate   
