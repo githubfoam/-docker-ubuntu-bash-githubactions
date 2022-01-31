@@ -106,7 +106,9 @@ jobs:
         virtualenv venv3 --python=`which python3`
         source venv3/bin/activate
         pip --version
-        pip install opencanary scapy pcapy
+        pip install opencanary scapy 
+        pip install scapy
+        #pip install pcapy
         opencanaryd --help
         opencanaryd --copyconfig #generate a conf
         source venv3/bin/deactivate   
