@@ -11,73 +11,6 @@ on:
 jobs:
 
   opencanary-ubuntu-latest-job:
-    name: "opencanary docker ubuntu latest"
-    runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     node:
-    #      - base
-    #      - modsecurity
-    #     #  - clearlinux    
-    env:
-      distribution: "ubuntu"
-      version: "latest"
-      name: "ubuntu/base"
-      dockerfiledir: "dockerfiles"
-      dockerfilename: "Dockerfile.ubuntu"
-    steps:
-    - uses: actions/checkout@v2.
-    - name: "os fingerprinting"
-      run: |
-        hostnamectl status
-        lsb_release -a
-        lsb_release -d
-        cat /etc/lsb-release
-        cat /etc/issue
-        cat /etc/os-release
-        sudo apt-get install -y neofetch && neofetch   
-    - name: "opencanary"
-      run: |
-        apt-get update -y && apt-get install python3 -yq
-        python3 -V
-        pip3 --version
-        pip3 install --user virtualenv
-        virtualenv --version
-        virtualenv venv3 --python=`which python3`
-        source venv3/bin/activate
-        pip --version
-        pip install opencanary scapy pcapy
-        opencanaryd --help
-        opencanaryd --copyconfig #generate a conf
-        source venv3/bin/deactivate
-    - name: "opencanary docker build ubuntu"
-      run: |
-        # destroyed afterwards (use --rm )
-        # all subsequent Dockerfile commands generate new images and the cache is not used
-        # https://github.com/thinkst/opencanary.git
-        git clone https://github.com/thinkst/opencanary.git && cd open*
-        sudo docker build --no-cache --rm  -t opencanary  . --file Dockerfile.latest 
-        docker image ls
-        docker image history opencanary 
-        docker system df -v               
-        docker image inspect opencanary     
-    # - name: "docker run with apparmor "
-    #   run: |
-    #     # https://docs.docker.com/engine/security/apparmor/
-    #     docker run --rm -it --security-opt apparmor=docker-default hello-world        
-    # # - name: "run test"
-    #   run: |
-    #     dir=$(pwd)
-    #     cd $dir/dockerfiles/ubuntu/latest
-    #     cd ${{matrix.node}}
-    #     echo "############################################"
-    #     echo "############################################"
-    #     echo "Building  ${{matrix.node}} dockerfile"
-    #     echo "############################################"
-    #     echo "############################################"        
-    #     docker build -t ${distribution}/${{matrix.node}} .    
-
-  ubuntu-latest-job:
     name: "docker ubuntu latest"
     runs-on: ubuntu-latest
     env:
@@ -110,5 +43,36 @@ jobs:
         pip install scapy
         #pip install pcapy
         opencanaryd --help
-        opencanaryd --copyconfig #generate a conf
+        #opencanaryd --copyconfig #generate a conf
         source venv3/bin/deactivate   
+
+  opencanary-build-docker-ubuntu-latest-job:
+    name: "opencanary build docker ubuntu latest"
+    runs-on: ubuntu-latest
+    env:
+      version: "latest"
+      name: "ubuntu/base"
+      dockerfiledir: "dockerfiles"
+      dockerfilename: "Dockerfile.ubuntu"
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: |
+        hostnamectl status
+        lsb_release -a
+        lsb_release -d
+        cat /etc/lsb-release
+        cat /etc/issue
+        cat /etc/os-release
+        sudo apt-get install -y neofetch && neofetch   
+    - name: "opencanary docker build ubuntu"
+      run: |
+        # destroyed afterwards (use --rm )
+        # all subsequent Dockerfile commands generate new images and the cache is not used
+        # https://github.com/thinkst/opencanary.git
+        git clone https://github.com/thinkst/opencanary.git && cd open*
+        sudo docker build --no-cache --rm  -t opencanary  . --file Dockerfile.latest 
+        docker image ls
+        docker image history opencanary 
+        docker system df -v               
+        docker image inspect opencanary
