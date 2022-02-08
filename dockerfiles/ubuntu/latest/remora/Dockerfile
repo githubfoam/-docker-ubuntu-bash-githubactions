@@ -7,7 +7,7 @@ RUN set -ex && apt-get update -qy && \
     apt-get purge unattended-upgrades && \
     apt-get clean all
     
-RUN set -ex && apt-get update -yq && \
+RUN set -ex && apt-get update -yq  && apt-get install git -y && \
     git clone https://github.com/TACC/remora.git && cd remo** && \
     ./install.sh
 
