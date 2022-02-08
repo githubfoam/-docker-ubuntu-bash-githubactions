@@ -19,6 +19,8 @@ jobs:
          - sshfs
          - ssh 
          - remora
+         - zram
+         - xanmod
     env:
       distribution: "ubuntu"
       version: "latest"
