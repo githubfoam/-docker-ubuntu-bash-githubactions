@@ -18,6 +18,7 @@ jobs:
         node:
          - sshfs
          - ssh 
+         - remora
     env:
       distribution: "ubuntu"
       version: "latest"
