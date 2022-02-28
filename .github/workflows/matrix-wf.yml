@@ -21,6 +21,7 @@ jobs:
          - remora
          - zram
          - xanmod
+         - modsecurity
     env:
       distribution: "ubuntu"
       version: "latest"
